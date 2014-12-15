@@ -24,6 +24,7 @@ find_package(catkin REQUIRED COMPONENTS genmsg actionlib_msgs actionlib
 )
 
 find_package(OpenCV REQUIRED)
+find_package(Boost REQUIRED COMPONENTS filesystem)
 
 add_action_files(DIRECTORY action FILES MapSegmentation.action)
 generate_messages(DEPENDENCIES actionlib_msgs sensor_msgs)
@@ -45,6 +46,7 @@ CATKIN_DEPENDS
 	${catkin_RUN_PACKAGES}
 DEPENDS
 	OpenCV
+  Boost
 )
 
 
@@ -58,6 +60,7 @@ include_directories(
 	ros/include
 	${catkin_INCLUDE_DIRS}
 	${OpenCV_INCLUDE_DIRS}
+	${Boost_INCLUDE_DIRS}
 )
 
 ## Declare a cpp library
@@ -74,6 +77,7 @@ add_executable(map_segmentation_action_client
 target_link_libraries(map_segmentation_action_client
 	${catkin_LIBRARIES}
 	${OpenCV_LIBRARIES}
+	${Boost_LIBRARIES}
 )
 
 add_executable(map_segmentation_action_server
@@ -82,6 +86,7 @@ add_executable(map_segmentation_action_server
 target_link_libraries(map_segmentation_action_server
 	${catkin_LIBRARIES}
 	${OpenCV_LIBRARIES}
+	${Boost_LIBRARIES}
 )
 ## Specify libraries to link a library or executable target against
 
