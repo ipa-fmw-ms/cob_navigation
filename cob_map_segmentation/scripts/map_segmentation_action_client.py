@@ -69,6 +69,7 @@ import actionlib
 from nav_msgs.msg import OccupancyGrid 
 from cv_bridge import CvBridge
 import cob_map_segmentation.msg
+from sensor_msgs.msg import Image
 
 class MapSegmentationActionClient():
     def __init__(self):   
@@ -123,7 +124,13 @@ class MapSegmentationActionClient():
                 rospy.loginfo("action finished: %s " % state)    
         else:
             rospy.loginfo("Action did not finish before the time out.")                
-        return client.get_result()
+        #return client.get_result()
+	# Publish map as image topic with 1Hz instead of return
+	pub = rospy.Publisher('map_segs', Image, queue_size=4)
+	r = rospy.Rate(1)
+	while not rospy.is_shutdown():
+		pub.publish(client.get_result().output_map)
+		r.sleep()
 
 
 #Only need, if you want to test the map segmentation action server from Client 
@@ -131,5 +138,5 @@ if __name__ == '__main__':
     rospy.init_node('test_segment_map')    
     test = MapSegmentationActionClient()    
     rospy.sleep(10)    
-    test.map_segmentation_action_client_()    
+    test.map_segmentation_action_client_()
     rospy.spin()
