@@ -127,7 +127,7 @@ void updateMapCallback(const nav_msgs::OccupancyGridConstPtr& map_msg)
 
 	ac.sendGoal(goal);
 	//wait for the action to return
-	bool finished_before_timeout = ac.waitForResult(ros::Duration(30.0));
+	bool finished_before_timeout = ac.waitForResult(ros::Duration(60.0));
 	if (finished_before_timeout)
 	{
 		actionlib::SimpleClientGoalState state = ac.getState();

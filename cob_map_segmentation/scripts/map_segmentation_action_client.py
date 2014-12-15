@@ -97,14 +97,14 @@ class MapSegmentationActionClient():
                 i += 1                
         
     def map_segmentation_action_client_(self):                      ######## this function is called
-        mat = cv.fromarray(self.map_)
+        mat = self.map_ #cv.fromarray(self.map_) https://github.com/ros-perception/vision_opencv/issues/51
 #         cv.ShowImage( "map_image", mat )
 #         cv.WaitKey()   
         #creates a action client object     
         client = actionlib.SimpleActionClient( 'segment_map', cob_map_segmentation.msg.MapSegmentationAction )               
         cv_image = CvBridge()
         #filling the goal msg format for map segmentation action server        
-        goal = cob_map_segmentation.msg.MapSegmentationGoal( input_map = cv_image.cv_to_imgmsg( mat , "mono8"), 
+        goal = cob_map_segmentation.msg.MapSegmentationGoal( input_map = cv_image.cv2_to_imgmsg( mat , "mono8"), 
                                                     map_resolution = self.map_resolution_, 
                                                     map_origin_x = self.map_origin_x_ , 
                                                     map_origin_y = self.map_origin_y_,
@@ -113,7 +113,7 @@ class MapSegmentationActionClient():
         client.wait_for_server()        
         rospy.loginfo("map segmentation action server started, sending goal.....")        
         client.send_goal(goal)        
-        finished_before_timeout = client.wait_for_result(rospy.Duration(30.0))        
+        finished_before_timeout = client.wait_for_result(rospy.Duration(90.0))        
         if finished_before_timeout:
             state = client.get_state()
             if state is 3:                
