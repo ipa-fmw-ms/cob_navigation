@@ -13,7 +13,7 @@
 # \note
 #   ROS stack name: autopnp
 # \note
-#   ROS package name: autopnp_scenario
+#   ROS package name: cob_map_segmentation
 #
 # \author: Mohammad Muinul Islam(email-> mohammad.islam@ipa.fraunhofer.de)
 #
@@ -61,14 +61,14 @@
 #
 #################################################################
 
-import roslib; roslib.load_manifest('autopnp_scenario')
+import roslib; roslib.load_manifest('cob_map_segmentation')
 import rospy
 import cv
 import numpy as np
 import actionlib
 from nav_msgs.msg import OccupancyGrid 
 from cv_bridge import CvBridge
-import autopnp_scenario.msg
+import cob_map_segmentation.msg
 
 class MapSegmentationActionClient():
     def __init__(self):   
@@ -101,10 +101,10 @@ class MapSegmentationActionClient():
 #         cv.ShowImage( "map_image", mat )
 #         cv.WaitKey()   
         #creates a action client object     
-        client = actionlib.SimpleActionClient( 'segment_map', autopnp_scenario.msg.MapSegmentationAction )               
+        client = actionlib.SimpleActionClient( 'segment_map', cob_map_segmentation.msg.MapSegmentationAction )               
         cv_image = CvBridge()
         #filling the goal msg format for map segmentation action server        
-        goal = autopnp_scenario.msg.MapSegmentationGoal( input_map = cv_image.cv_to_imgmsg( mat , "mono8"), 
+        goal = cob_map_segmentation.msg.MapSegmentationGoal( input_map = cv_image.cv_to_imgmsg( mat , "mono8"), 
                                                     map_resolution = self.map_resolution_, 
                                                     map_origin_x = self.map_origin_x_ , 
                                                     map_origin_y = self.map_origin_y_,

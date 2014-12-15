@@ -14,7 +14,7 @@
  * \note
  * ROS stack name: autopnp
  * \note
- * ROS package name: autopnp_scenario
+ * ROS package name: cob_map_segmentation
  *
  * \author
  * Author: Mohammad Muinul Islam(email:mohammad.islam@ipa.fraunhofer.de)
@@ -90,7 +90,7 @@
 
 #include <actionlib/server/simple_action_server.h>
 
-#include <autopnp_scenario/MapSegmentationAction.h>
+#include <cob_map_segmentation/MapSegmentationAction.h>
 
 class segmentation_algorithm
 {
@@ -163,14 +163,14 @@ private:
 	cv::Mat Image_Segmentation_method(cv::Mat &Original_Map_from_subscription, double map_resolution_data_from_subscription);
 
 	//This is the execution function used by action server
-	void execute_map_segmentation_server(const autopnp_scenario::MapSegmentationGoalConstPtr &goal);
+	void execute_map_segmentation_server(const cob_map_segmentation::MapSegmentationGoalConstPtr &goal);
 
 protected:
 	ros::NodeHandle nh_;
-	actionlib::SimpleActionServer<autopnp_scenario::MapSegmentationAction> map_segmentation_action_server_;
+	actionlib::SimpleActionServer<cob_map_segmentation::MapSegmentationAction> map_segmentation_action_server_;
 	std::string action_name_;
-	autopnp_scenario::MapSegmentationFeedback action_feedback_;
-	autopnp_scenario::MapSegmentationResult action_result_;
+	cob_map_segmentation::MapSegmentationFeedback action_feedback_;
+	cob_map_segmentation::MapSegmentationResult action_result_;
 
 public:
 	//Start the map segmentation action server

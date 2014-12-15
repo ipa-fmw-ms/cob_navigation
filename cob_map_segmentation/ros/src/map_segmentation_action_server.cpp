@@ -1,4 +1,4 @@
-#include <autopnp_scenario/map_segmentation_algorithm.h>
+#include <cob_map_segmentation/map_segmentation_algorithm.h>
 
 //#define __DEBUG_DISPLAYS__
 
@@ -268,7 +268,7 @@ cv::Mat segmentation_algorithm::Image_Segmentation_method(cv::Mat &Original_Map_
 	return temporary_map_for_replica_padding_purpose.clone();
 }
 
-void segmentation_algorithm::execute_map_segmentation_server(const autopnp_scenario::MapSegmentationGoalConstPtr &goal)
+void segmentation_algorithm::execute_map_segmentation_server(const cob_map_segmentation::MapSegmentationGoalConstPtr &goal)
 {
 	ros::Rate looping_rate(1);
 

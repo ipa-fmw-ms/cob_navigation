@@ -70,7 +70,7 @@
 #include <cv_bridge/cv_bridge.h>
 #include <actionlib/client/simple_action_client.h>
 #include <actionlib/client/terminal_state.h>
-#include <autopnp_scenario/MapSegmentationAction.h>
+#include <cob_map_segmentation/MapSegmentationAction.h>
 #include <nav_msgs/OccupancyGrid.h>
 
 void updateMapCallback(const nav_msgs::OccupancyGridConstPtr& map_msg)
@@ -99,10 +99,10 @@ void updateMapCallback(const nav_msgs::OccupancyGridConstPtr& map_msg)
 	}
 
 	//instantiation of action goal
-	autopnp_scenario::MapSegmentationGoal goal;
+	cob_map_segmentation::MapSegmentationGoal goal;
 
 	//instantiation of action client object
-	actionlib::SimpleActionClient<autopnp_scenario::MapSegmentationAction> ac("segment_map", true);
+	actionlib::SimpleActionClient<cob_map_segmentation::MapSegmentationAction> ac("segment_map", true);
 
 	// wait for the action server to start
 	ROS_INFO("Waiting for action server to start.....");

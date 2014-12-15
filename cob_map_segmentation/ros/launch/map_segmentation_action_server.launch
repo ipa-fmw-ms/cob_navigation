@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- send parameters to parameter server -->
+  <rosparam command="load" ns="map_segmentation_algorithm_parameter" file="$(find cob_map_segmentation)/ros/launch/map_segmentation_algorithm.yaml"/>
+
+  <!--  -->
+  <node pkg="cob_map_segmentation" type="map_segmentation_action_server" name="segment_map" output="screen"/>	
+  <!-- ns=namespace (arbitrary), type=name of executable, name=node name (arbitrary) -->
+
+</launch>
