@@ -127,7 +127,7 @@ class MapSegmentationActionClient():
         #return client.get_result()
 	# Publish map as image topic with 1Hz instead of return
 	pub = rospy.Publisher('map_segs', Image, queue_size=4)
-	r = rospy.Rate(1)
+	r = rospy.Rate(.1)
 	while not rospy.is_shutdown():
 		pub.publish(client.get_result().output_map)
 		r.sleep()
@@ -137,6 +137,6 @@ class MapSegmentationActionClient():
 if __name__ == '__main__':    
     rospy.init_node('test_segment_map')    
     test = MapSegmentationActionClient()    
-    rospy.sleep(10)    
+    rospy.sleep(5)    
     test.map_segmentation_action_client_()
     rospy.spin()
