@@ -292,11 +292,15 @@ void segmentation_algorithm::execute_map_segmentation_server(const cob_map_segme
 
 	//Publish Result message:
 
+	//Flip Image Back
+	cv::Mat Segmented_map_flip;
+	cv::flip(Segmented_map, Segmented_map_flip, 0);
+	
 	//converting the cv format in map msg format
 	cv_bridge::CvImage cv_image;
 	cv_image.header.stamp = ros::Time::now();
 	cv_image.encoding = "mono8";
-	cv_image.image = Segmented_map;
+	cv_image.image = Segmented_map_flip;
 	cv_image.toImageMsg(action_result_.output_map);
 
 	//cv::imshow("segmentation", Segmented_map);
