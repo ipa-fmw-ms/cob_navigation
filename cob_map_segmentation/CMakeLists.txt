@@ -71,17 +71,17 @@ include_directories(
 ## Declares a shared library. Resulting name will be lib<name>.so
 
 ## Declare a cpp executable
-add_executable(map_segmentation_action_client
-	ros/src/map_segmentation_action_client.cpp 
-)
-target_link_libraries(map_segmentation_action_client
-	${catkin_LIBRARIES}
-	${OpenCV_LIBRARIES}
-	${Boost_LIBRARIES}
-)
+#add_executable(map_segmentation_action_client
+#	ros/src/map_segmentation_action_client.cpp 
+#)
+#target_link_libraries(map_segmentation_action_client
+#	${catkin_LIBRARIES}
+#	${OpenCV_LIBRARIES}
+#	${Boost_LIBRARIES}
+#)
 
 add_executable(map_segmentation_action_server
-	ros/src/map_segmentation_action_server.cpp 
+	ros/src/map_segmentation_action_server.cpp
 )
 target_link_libraries(map_segmentation_action_server
 	${catkin_LIBRARIES}
@@ -100,7 +100,7 @@ add_dependencies( map_segmentation_action_server ${catkin_EXPORTED_TARGETS})
 #############
 ## Mark executables and/or libraries for installation
 install(TARGETS 
-    map_segmentation_action_client
+    #map_segmentation_action_client
     map_segmentation_action_server
 	ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 	LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
